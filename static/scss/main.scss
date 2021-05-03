@@ -1,0 +1,250 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+$blue: rgb(14, 122, 238);
+$green: rgb(89, 191, 108);
+$green2:rgb(1, 165, 165);
+$orange:rgb(241, 145, 52);
+$head-section-overlay: rgba(0, 0, 0,0.6);
+
+html {
+    text-align: center;
+    padding-bottom: 2rem;
+    font-family: 'EB Garamond', serif;
+}
+
+.captlse {
+    text-transform: uppercase;
+}
+
+.fat {
+    font-weight: 700;
+}
+
+.bg-orange {
+    background: $orange;
+}
+
+.col-green {
+    color: $green;
+}
+.col-white {
+    color: white;
+}
+
+.material-icons.small {
+    font-size: 1rem;
+    padding-right: 4px;
+}
+
+.font-fam3 {
+    font-family: 'Bebas Neue', cursive;
+}
+.font-fam2 {
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.alig-item-center {
+    align-items: center;
+}
+.just-cont-center {
+    justify-content: center;
+}
+
+.link-reset {
+    text-decoration: none;
+    color: inherit;
+}
+
+.font-xxl {
+    font-size: 3rem;
+}
+
+.pt-2px {
+    padding-top: 2px;
+}
+.fat-semi {
+    font-weight: 600;
+}
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+    } to {
+        transform: translateX(0%);
+    }
+}
+@mixin slide-in-left($duration: 250ms, $timing: ease-out) {
+    animation-name: slide-in-left;
+    animation-duration: $duration;
+    animation-timing-function: $timing;
+}
+@keyframes slide-in-top {
+    // from {
+    //     bottom: 50px;
+    // } to {
+    //     bottom: 0px;
+    // }
+    from {
+        transform: translateY(-100%);
+    } to {
+        transform: translateY(0%);
+    }
+}
+@mixin slide-in-top($duration: 250ms, $timing: ease-out) {
+    animation-name: slide-in-top;
+    animation-duration: $duration;
+    animation-timing-function: $timing;
+}
+
+
+// ###########    Specific styling
+html > body {
+    overflow: hidden;
+
+    header {
+        position: fixed;
+        top: 0;
+        z-index: 5;
+        background: white;
+        width: 100%;
+        box-shadow: 0px 0px 20px -3px black;
+    }
+
+    header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0rem 2rem;
+
+        .head-brand {
+            height: max-content;
+            padding-top: 5px;
+            width: 140px;
+            
+            img {
+                width: inherit;
+            }
+        }
+
+        .nav-link-cont {
+            font-size: 1.1rem;
+            list-style: none;
+            text-decoration: none;
+            color: black;
+            padding: 0px 1rem 0px 1rem;
+            margin-top: 8px;
+            gap: 2rem;
+            
+            > li > a {
+                text-decoration: none;
+                color: rgb(43, 43, 43);
+                transition: color 150ms ease;
+
+                &::after {
+                    content: '';
+                    display: block;
+                    height: 3px;
+                    width: calc(100% + 16px);
+                    background: none;
+                    position: relative;
+                    right: 8px;
+                    transition: background 600ms ease;
+                    border-radius: 50em;
+                }
+
+                &:hover {
+                    color: $green2;
+
+                    &::after {
+                        @include slide-in-left(200ms, ease-out);
+                        background: $green2;
+                    }
+                }
+            }
+        }
+
+        .link-reset.login {
+            color: $blue;
+            padding: 3px 12px;
+            margin-right: 5px;
+        }
+        .link-reset.sign-up {
+            color: white;
+            font-size: 0.9rem;
+            padding: 3px 27px 3px 16px;
+            border-radius: 2px;
+        }
+    }
+
+    .main {
+        padding-top: 47px;
+        height: 100vh;
+
+        > .wrapper {
+            overflow: auto;
+            height: 100%;
+        }
+        
+
+        .head-section {
+            background: url("/static/images/skyline.jpg"), $head-section-overlay;
+            background-blend-mode: multiply;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 65vh;
+            overflow: hidden;
+            position: relative;
+            justify-content: space-around;
+            // margin-top: 2.95rem;
+
+            .sign-up {
+                border-radius: 3px;
+                padding: 8px 36px 8px 23px;
+                margin-top: auto;
+                margin-bottom: 4.5rem;
+                font-size: 1.1rem;
+
+                .material-icons {
+                    margin-right: 5px;
+                    padding-bottom: 1px;
+                }
+            }
+
+        }
+
+        section.appeal {
+            padding: 0.3rem 1rem 0rem 1rem;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+            .sub-section {
+                padding: 1rem 1.5rem 1rem 1.5rem;
+                height: 100%;
+                width: 30%;
+                min-width: 300px;
+                max-width: 380px;
+
+                :last-child {
+                    width: 67px;
+                    height: 67px;
+                    border: 4px solid $green;
+                    margin-top: 1.5rem;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
